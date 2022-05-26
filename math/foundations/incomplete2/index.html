@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<head>
+    <script>
+        MathJax = {
+          tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']]
+          },
+          svg: {
+            fontCache: 'global'
+          }
+        };
+    </script>  
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <title>Shan-an</title>
+</head>
+<body>
+    <h2>不完全性のゼミ[二日目]</h2>
+    さて前回も言ったように、 
+    <h4>今どの階層で話しているのか、を常に意識する！</h4>
+    ことが大切です。今回は再帰的関数について、基本的な定理を証明します。
+    突然不完全性定理とは関係がなくなったかのように思われますが、
+    実はこれがかなり重要になります。
+    我々は論理式を自然数にコーディングしたいわけですが、そのためには
+    様々な複雑な関数が必要になります。しかしペアノ算術の体系には
+    足し算と掛け算くらいしかありません。
+    論理式、証明、といった概念を算術化するために必要な関数は
+    どうするのでしょうか。
+    実は、再帰的な関数ならペアノの言葉で"表現"できることを示します。<br><br>
+
+    <b>定義</b> (原子再帰的関数)
+    <p style="margin-left: 1rem;">
+    原子再帰的関数は次のように定義される。 <br>
+    1. 次に示す初期関数と呼ばれるは原子再帰的である。 <br>
+    </p>
+    <p style="margin-left: 2rem;">
+    $S(x)= x+1$ <br>
+    $E_i^n(x_1,...,x_n) = x_i$ <br>
+    $C_q^n(x_1,...,x_n) = q$ <br>
+    </p>
+
+    <p style="margin-left: 1rem;">
+    2. 関数$h(x_1,...,x_m)$と$g_1(x_1,...,x_n),...,g_m(x_1,...,x_n)$が原子再帰的であるとき
+    </p>
+    <p style="margin-left: 2rem;">
+    次のように得られる$f(x_1,..,x_n)$も原子再帰的<br>
+    $f(x_1,..,x_n) = h(g_1(x_1,...,x_n),...,g_m(x_1,...,x_n))$ <br>
+    </p>
+
+    <p style="margin-left: 1rem;">
+    3. 関数$h(x_1,...,x_n,x_{n+1},x_{n+2})$と$g(x_1,...,x_n)$が原子再帰なら
+    </p>
+    <p style="margin-left: 2rem;">
+    次のような関数$f(x_1,...,x_n,x_{n+1})$も原子再帰的 <br>
+    $f(x_1,...,x_n,0)=g(x_1,...,x_n)$ <br>
+    $f(x_1,...,x_n,k+1) = h(x_1,...,x_n,k,f(x_1,...,x_n,k))$　　　$(k=0,1,2,...)$ <br>
+    </p>
+    <p style="margin-left: 1rem;">
+    4. 3.の特殊な場合で、$n=0$の場合も許す。この時は$g$の部分は定数とする。<br>
+    </p>
+    <p style="margin-left: 2rem;">
+    $f(0) = q$ <br>
+    $f(k+1) = h(k,f(k))$ <br>
+    </p>
+
+    </p>
+    さらに、1.～4.に加えて、次の5.も用いて得られるような関数のことは、再帰的であるという。<br>
+    <br>
+
+    <b>定義</b> (再帰的関数)
+    <p style="margin-left: 1rem;">
+    再帰的関数は次のように定義される。 <br>
+    1. 次に示す初期関数と呼ばれるは再帰的である。 <br>
+    </p>
+    <p style="margin-left: 2rem;">
+    $S(x)= x+1$ <br>
+    $E_i^n(x_1,...,x_n) = x_i$ <br>
+    $C_q^n(x_1,...,x_n) = q$ <br>
+    </p>
+
+    <p style="margin-left: 1rem;">
+    2. 関数$h(x_1,...,x_m)$と$g_1(x_1,...,x_n),...,g_m(x_1,...,x_n)$が再帰的であるとき
+    </p>
+    <p style="margin-left: 2rem;">
+    次のように得られる$f(x_1,..,x_n)$も再帰的<br>
+    $f(x_1,..,x_n) = h(g_1(x_1,...,x_n),...,g_m(x_1,...,x_n))$ <br>
+    </p>
+
+    <p style="margin-left: 1rem;">
+    3. 関数$h(x_1,...,x_n,x_{n+1},x_{n+2})$と$g(x_1,...,x_n)$が再帰的なら
+    </p>
+    <p style="margin-left: 2rem;">
+    次のような関数$f(x_1,...,x_n,x_{n+1})$も再帰的 <br>
+    $f(x_1,...,x_n,0)=g(x_1,...,x_n)$ <br>
+    $f(x_1,...,x_n,k+1) = h(x_1,...,x_n,k,f(x_1,...,x_n,k))$　　　$(k=0,1,2,...)$ <br>
+    </p>
+    <p style="margin-left: 1rem;">
+    4. 3.の特殊な場合で、$n=0$の場合も許す。この時は$g$の部分は定数とする。<br>
+    </p>
+    <p style="margin-left: 2rem;">
+    $f(0) = q$ <br>
+    $f(k+1) = h(k,f(k))$ <br>
+    </p>
+    <p style="margin-left: 1rem;">
+    5. 自然数の関係$R(x_1,...,x_n,y)$があるとき、$R(x_1,...,x_n,y)$を満たすような$y$のうち最小
+    ものを$\mu y R(x_1,...,x_n,y)$と書くことにする。$g(x_1,...,x_n,y)$が原子再帰的の時、
+    次で定義される$f(x_1,...,x_n)$も原子再帰的。
+    </p>
+    <p style="margin-left: 2rem;">
+    $f(x_1,...,x_n) = \mu y (g(x_1,...,x_n,y)=0)$
+    </p>
+
+    通常の足し算$f(x,y)=x+y$や$f(x,y)=x \cdot y$などは原子再帰的であることが分かります。 <br>
+
+
+    <b>定義</b> (再帰的関係、原子再帰的関係)
+    <p style="margin-left: 1rem;">
+    自然数の関係$R(x_1,...,x_n)$について、$R(x_1,...,x_n) \leftrightarrow \phi(x_1,...,x_n)=0$
+    となる関数$\phi$が再帰的であるとき、$R$は再帰的であるという。
+    $\phi$が原子再帰的なら$R$も原子再帰的であるという。
+    </p>
+
+    具体例としては、$R(p) \equiv$ $p$は素数である、は原子再帰的です。
+
+    <br>
+    <b>定理</b>
+    <p style="margin-left: 1rem;">
+    $R(x_1,...,x_n)$と$Q(x_1,...,x_n)$が再帰的(原子再帰的)の時、次の関係も再帰的(原子再帰的)。
+    </p>
+    <p style="margin-left: 2rem;">
+    $\lnot R$ <br>
+    $R \land Q$ <Br>
+    $R \lor Q$ <br>
+    $R \implies Q$ <br>
+    $\exists x_1 < y R(x_1,...,x_n)$ <br>
+    $\forall x_1 < y R(x_1,,..,x_n)$ <br>
+    </p>
+    <p style="margin-left: 1rem;">
+    さらに、$R$が原子再帰的なら、次の関数$f$も原子再帰的。 <br>
+    </p>
+    <p style="margin-left: 2rem;">
+    $\mu x_1 < y R(y,...,x_n)$
+    </p>
+    証明は難しくありません。さて、これらの性質と、足し算掛け算が原子再帰的であることを
+    使って、コーディングに必要な関数が原子再帰的であることを示していくのです。<br>
+    次回は、再帰的関数がペアノで"表現"できることを示します。
+</body>
+
+
